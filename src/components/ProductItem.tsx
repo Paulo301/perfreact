@@ -5,7 +5,8 @@ const AddProductToWishlist = dynamic<AddProductToWishlistProps>(() => {
   return import("./AddProductToWishlist").then(mod => mod.AddProductToWishlist);
 }, {
   loading: () => <span>Carregando...</span>
-})
+});
+import loadash from 'lodash';
 
 export type Product = {
   id: number;
@@ -37,7 +38,7 @@ function ProductItemComponent({ product, onAddToWishlist }: ProductItemProps) {
 }
 
 export const ProductItem = memo(ProductItemComponent, (prevProps, nextProps) => {
-  return Object.is(prevProps.product, nextProps.product);
+  return loadash.isEqual(prevProps.product, nextProps.product);
 });
 
 // export const ProductItem = memo(({ product }: ProductItemProps) => {
